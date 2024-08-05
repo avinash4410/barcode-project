@@ -1,0 +1,243 @@
+<h5 style="text-align: center;">JOB CARD WORK RECORD</h5>
+<div class="card mx-auto p-4" style="width: 75rem; background-color: rgb(79, 108, 147); margin-top:2%;">
+
+  <h5 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">HYPRESS RUBBER MFG.CO.</h5>
+
+  <form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()" class="row "
+    style="background-color: rgb(255, 255, 255); padding-top: 2%;">
+
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke; background-color: antiquewhite;" name="input" class="form-label">JOB CARD NO</label>
+      <input type="text" class="bg-light" formControlName="cardNo" readonly style="width: 60%;">
+      <small class="text-danger" *ngIf="!myReactiveForm.get('cardNo')?.valid && myReactiveForm.get('cardNo')?.touched">
+        <span *ngIf="myReactiveForm.get('cardNo')?.errors?.['required']">Job card number required</span>
+      </small>
+    </div>
+
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">CUSTOMER NAME</label>
+      <!-- <input type="text" formControlName="custName"> -->
+      <select formControlName="custName" (change)="setCustName($event)" style="margin-left: 25px; width: 60%;">
+        <option value="null" reeadonly disabled selected>--Select--</option>
+        <option *ngFor="let customer of customers" [value]="customer.CUSTOMER_NAME" style="width: 60%;">
+          {{customer.CUSTOMER_NAME}}
+        </option>
+      </select>
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('custName')?.valid && myReactiveForm.get('custName')?.touched">
+        <span *ngIf="myReactiveForm.get('custName')?.errors?.['required']">Customer name required</span>
+      </small>
+    </div>
+
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">ITEM CODE</label>
+      <!-- <input type="text" formControlName="itemName" placeholder="" style="width: 60%; "> -->
+      <select formControlName="itemName" (change)="setItemName($event)" style="margin-left: 25px; width: 60%;">
+        <option value="null" reeadonly disabled selected>--Select--</option>
+        <option *ngFor="let item of filteredItems" [value]="item.ITEM_NAME" style="width: 60%;">{{item.ITEM_NAME}}
+        </option>
+      </select>
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('itemName')?.valid && myReactiveForm.get('itemName')?.touched">
+        <span *ngIf="myReactiveForm.get('itemName')?.errors?.['required']">Item name required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">ITEM DESCRIPTION</label>
+      <!-- <input type="text" formControlName="itemDesc" placeholder="" style="width: 60%; "> -->
+      <select formControlName="itemDesc" (change)="setItemName($event)" style="margin-left: 25px; width: 60%;">
+        <option value="null" reeadonly disabled selected>--Select--</option>
+        <option *ngFor="let item of filteredItems" [value]="item.ITEM_DESCRIPTION" style="width: 60%;">
+          {{item.ITEM_DESCRIPTION}}
+        </option>
+      </select>
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('itemDesc')?.valid && myReactiveForm.get('itemDesc')?.touched">
+        <span *ngIf="myReactiveForm.get('itemDesc')?.errors?.['required']">Item Description required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral; background-color:whitesmoke;" name="input"
+        class="form-label">BATCH CODE</label>
+      <select formControlName="batchCode" placeholder="" style="width: 60%; margin-left: 25px;">
+        <!-- <select  formControlName="shift"> -->
+        <option reeadonly disabled selected value="null">--Select--</option>
+        <option *ngFor="let batchcode of batchCodes" [value]="batchcode.BATCH_CODE">{{batchcode?.BATCH_CODE}}</option>
+        <!-- <option value="AA-01">AA-01</option>
+        <option value="AA-02">AA-02</option>
+        <option value="AA-03">AA-03</option> -->
+        <!-- <option value="AA-04">AA-04</option>
+        <option value="AA-05">AA-05</option>
+        <option value="AA-06 ">AA-06</option>
+        <option value="AA-07">AA-07</option>
+        <option value="AA-08">AA-08</option>
+        <option value="AA-09">AA-09</option>
+        <option value="AA-09">AA-10</option> -->
+      </select>
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('batchcode')?.valid && myReactiveForm.get('batchcode')?.touched">
+        <span *ngIf="myReactiveForm.get('batchcode')?.errors?.['required']">Batch code required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">BATCH WEIGHED BY</label>
+      <input type="text" formControlName="batchWeighed" placeholder="" style=" 
+  margin-left: 25px; width: 60%;">
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('batchweighed')?.valid && myReactiveForm.get('batchweighed')?.touched">
+        <span *ngIf="myReactiveForm.get('batchweighed')?.errors?.['required']">batch weight required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">BATCH MADE BY</label>
+      <input type="text" formControlName="batchMadeBy" placeholder="" style="width: 60%; ">
+
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('batchMadeBy')?.valid && myReactiveForm.get('batchMadeBy')?.touched">
+        <span *ngIf="myReactiveForm.get('batchMadeBy')?.errors?.['required']">batch Made by required</span>
+      </small>
+    </div>
+
+    <div class="col-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;background-color: antiquewhite;" name="input" class="form-label">MOULDING QTY</label>
+      <input type="number" formControlName="mouldingQty" placeholder="" style="width: 60%; ">
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('mouldingQty')?.valid && myReactiveForm.get('mouldingQty')?.touched">
+        <span *ngIf="myReactiveForm.get('mouldingQty')?.errors?.['required']">Moulding Quantity required</span>
+      </small>
+    </div>
+    <!-- <div class="col-md-6">
+  <label style="border-left: 10px solid lightcoral;
+background-color:whitesmoke;" name="input" class="form-label">BOX QTY</label>
+  <input type="text" formControlName="boxQty">
+</div> -->
+
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">MOULDING DATE</label>
+      <input type="date" formControlName="modulingDate" placeholder="" style="width: 60%; ">
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('modulingDate')?.valid && myReactiveForm.get('modulingDate')?.touched">
+        <span *ngIf="myReactiveForm.get('modulingDate')?.errors?.['required']">JMoulding Date required</span>
+      </small>
+
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+background-color:whitesmoke;" name="input" class="form-label">BOX QTY</label>
+      <input type="text" formControlName="boxQty" style="
+  margin-left: 25px; width: 60%;" class="bg-light" readonly>
+      <small class="text-danger" *ngIf="!myReactiveForm.get('boxQty')?.valid && myReactiveForm.get('boxQty')?.touched">
+        <span *ngIf="myReactiveForm.get('boxQty')?.errors?.['required']">Box quantity required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">MOULDER NAME</label>
+      <select (change)="getOprName($event)" style="
+  margin-left: 25px; width: 60%;">
+        <option reeadonly disabled selected>--Select--</option>
+        <option *ngFor="let operator of operators" [value]="operator.oid">{{operator.name}}</option>
+      </select>
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('moulderName')?.valid && myReactiveForm.get('moulderName')?.touched">
+        <span *ngIf="myReactiveForm.get('moulderName')?.errors?.['required']">Moulder name required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">SHIFT </label>
+      <select formControlName="shift" style="
+  margin-left: 25px; width: 60%;">
+        <option reeadonly disabled selected>--Select--</option>
+        <option value="MORNIG">MORNIG</option>
+        <option value="NIGHT">NIGHT</option>
+        <option value="DAY">DAY</option>
+        <option value="OTHER">OTHER</option>
+      </select>
+      <small class="text-danger" *ngIf="!myReactiveForm.get('shift')?.valid && myReactiveForm.get('shift')?.touched">
+        <span *ngIf="myReactiveForm.get('shift')?.errors?.['required']">Shift required</span>
+      </small>
+    </div>
+    <div class="col-md-6 ">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">M/C NO </label>
+      <select formControlName="mcNo" placeholder="" style="
+  margin-left: 25px; width: 60%;">
+        <!-- <select  formControlName="shift"> -->
+        <option reeadonly disabled selected>--Select--</option>
+        <option value="AA-01">A-001</option>
+        <option value="AA-02">A-002</option>
+        <option value="AA-03">A-003</option>
+        <option value="AA-04">A-004</option>
+        <option value="AA-05">A-005</option>
+        <option value="AA-06">A-006</option>
+        <option value="AA-07">A-007</option>
+        <option value="AA-08">A-008</option>
+        <option value="AA-09">A-009</option>
+        <option value="AA-10">A-010</option>
+        <option value="AA-011">A-011</option>
+      </select>
+      <small class="text-danger" *ngIf="!myReactiveForm.get('mcNo')?.valid && myReactiveForm.get('mcNo')?.touched">
+        <span *ngIf="myReactiveForm.get('mcNo')?.errors?.['required']">Machine Number required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">INSPECTR NAME</label>
+      <!-- formControlName="inspectorName" -->
+      <select (change)="getInspectorName($event)" style="
+  margin-left: 25px; width: 60%;">
+        <option reeadonly disabled selected>--Select--</option>
+        <option *ngFor="let inspector of inspectors" [value]="inspector.oid">{{inspector.name}}</option>
+      </select>
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('inspectorName')?.valid && myReactiveForm.get('inspectorName')?.touched">
+        <span *ngIf="myReactiveForm.get('inspectorName')?.errors?.['required']">Inspector name required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 10px solid rgb(204, 201, 201);
+  background-color:whitesmoke;" name="input" class="form-label">REJECTOR</label>
+      <!-- formControlName="rejectorName" -->
+      <select (change)="getRejectorName($event)" style="
+  margin-left: 25px; width: 60%;">
+        <option reeadonly disabled selected>--Select--</option>
+        <option *ngFor="let rejector of rejectors" [value]="rejector.oid">{{rejector.name}}</option>
+      </select>
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('rejectorName')?.valid && myReactiveForm.get('rejectorName')?.touched">
+        <span *ngIf="myReactiveForm.get('rejectorName')?.errors?.['required']">Rejector name required</span>
+      </small>
+    </div>
+    <!-- <button type="button" [disabled]="isBarcodeGenerated"(click)="generateBarcode()" class="btn btn-light"><span class="bi bi-qr-code"></span></button> -->
+    <div class="col-md-6">
+      <!-- <button type="button" [disabled]="isBarcodeGenerated" (click)="generateBarcode()" class="btn btn-light"
+        style=" margin-bottom: 3%; height: auto;color: black;text-align: justify;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: rgb(133, 172, 56);">
+        <span class="bi bi-qr-code">barcode</span></button> -->
+      <!-- <input type="text" formControlName="barcode" placeholder="" style="width: 60%; " > -->
+      <!-- <button type="submit" class="btn btn-success "
+        style="size: 2px;margin-bottom: 3%; align-content: center;text-align: right;margin-left: 6%;color: black;text-align: justify;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: rgb(177, 239, 196);">Submit</button> -->
+
+
+
+      <div class="loader-container" *ngIf="loading">
+        <div class="loader"></div>
+        <span>Loading...</span>
+      </div>
+      <button type="submit" class="btn btn-success "
+        style="size: 2px;margin-bottom: 3%; align-content: center;text-align: right;margin-left: 6%;color: black;text-align: justify;font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; background-color: rgb(177, 239, 196);">
+        Submit
+      </button>
+      <div>
+      </div>
+    </div>
+  </form>
+</div>

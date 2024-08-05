@@ -1,0 +1,85 @@
+<h6 style="text-align: center;">BATCH CODE REGISTRATION FORM</h6>
+<div class="card mx-auto p-4" style="width: 77rem; background-color: rgb(79, 108, 147); margin-top:2%; ">
+  <form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()" class="row g-6" class="row "
+    style="background-color: rgb(255, 255, 255); padding-top: 1%;">
+    <div class="row">
+      <div class="col">
+        <label style="border-left: 12px solid lightcoral;
+      background-color:whitesmoke; text-align: center;" name="input" class="form-label">ID</label>
+        <input type="text" formControlName="id" style="width: 30%;" readonly class="bg-light">
+        <small class="text-danger" *ngIf="!myReactiveForm.get('id')?.valid && myReactiveForm.get('id')?.touched">
+          <div *ngIf="myReactiveForm.get('id')?.errors?.['required']">Id required</div>
+        </small>
+      </div>
+      <div class="col">
+        <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">Batch Code </label>
+        <input type="text" formControlName="batchCode" style="width: 45%;">
+        <small class="text-danger"
+          *ngIf="!myReactiveForm.get('batchCode')?.valid && myReactiveForm.get('batchCode')?.touched">
+          <div *ngIf="myReactiveForm.get('batchCode')?.errors?.['required']">Batch code required</div>
+        </small>
+
+      </div>
+      <div class="col"></div>
+      <div class="col-md-3 text-center mt-3">
+        <button type="submit" class="btn btn-success" style="margin: top 2px; margin-bottom: 5%;">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="col-12">
+  <h5 style="text-align: center; padding-top: 15px;">BATCH CODE RECORD LIST</h5>
+  <div id="divTableOldDb" class="divTable tblScroll"
+    style="border:2px solid rgb(252, 251, 251); height:400px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: smaller;">
+    <input class="FormControl" placeholder="Search" type="text" [(ngModel)]="mySearchi"
+      style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;">
+    <table class='table table-bordered table-striped table-hover' id='tblOldDb'>
+      <thead>
+        <tr class="style" style="font-weight: 200; background-color: rgb(19, 152, 213); text-align: center">
+          <th scope="col">ID</th>
+          <th scope="col" style="text-align: start">BATCH CODE </th>
+          <th scope="col" colspan="2">Action</th>
+        </tr>
+      </thead>
+      <tbody style="background: #ffffff; width: 10px;">
+        <!-- <tr *ngFor="let data of batchCodes"> -->
+          <tr *ngFor="let data of batchCodes | filter : mySearchi | paginate:{ itemsPerPage: itemsPerPage, currentPage : page, totalItems :count}">
+          <td style="text-align: center">{{data.ID}}</td>
+          <td style="text-align: start">{{data.BATCH_CODE}}</td>
+          <td (click)="edit(data.ID)" style=" align-items: center;
+          background-color: #187228;
+          color: rgb(14, 13, 13);
+          border: none;
+          padding: 4px;
+          margin-top: 10px;
+          margin-right: 10px;
+          margin-left: 10px;
+          font-size: 15px;
+          height: 30px;
+          width: 60px;
+          border-radius: 30%;
+          box-shadow: 0 2px 4px rgb(26, 6, 2);">Update</td>
+          <td (click)="delete(data.ID)" style=" align-items: center;
+          background-color: #eb5126;
+          color: rgb(14, 13, 13);
+          border: none;
+          padding: 4px;
+          margin-top: 10px;
+          margin-right: 10px;
+          margin-left: 10px;
+          font-size: 15px;
+          height: 30px;
+          width: 60px;
+          border-radius: 30%;
+          box-shadow: 0 2px 4px rgb(26, 6, 2);">Delete</td>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+<pagination *ngIf="batchCodes?.length>0" [currentPage]="page" [pageCount]="batchCodes?.length/itemsPerPage+1"
+  (pageSelected)="changePage($event)"></pagination>
+
+

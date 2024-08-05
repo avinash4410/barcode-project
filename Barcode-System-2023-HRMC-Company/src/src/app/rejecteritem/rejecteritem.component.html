@@ -1,0 +1,247 @@
+<div *ngIf="!showPrint" class="card mx-auto p-4" style="width: 75rem; background: #ffffff;">
+    <form [formGroup]="myReactiveForm" class="row g-6">
+        <div class="text">
+            <h5>HYPRESS RUBBER MFG.CO.</h5>
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral; background-color:whitesmoke;" name="input"
+                class="form-label ">JOB CARD NO</label>
+            <input type="text" formControlName="cardNo" class="bg-light" readonly style="width:60%;">
+        </div>
+        <!-- <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+            background-color:whitesmoke; background-color: antiquewhite;" name="input" class="form-label">PART
+                NO</label>
+            <input type="text" class="bg-light" formControlName="partNo" readonly style="width:60%;">
+        </div> -->
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">CUSTOMER NAME</label>
+            <input type="text" formControlName="custName" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">ITEM DESCRIPTION</label>
+            <input type="text" formControlName="itemDesc" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">BATCH CODE</label>
+            <input type="text" formControlName="batchCode" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">BATCH WEIGHED BY</label>
+            <input type="text" formControlName="batchWeighed" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">BATCH MADE BY</label>
+            <input type="text" formControlName="batchMadeBy" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">MOULDING DATE</label>
+            <input type="text" formControlName="modulingDate" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">MOULDER NAME</label>
+            <!-- <select  formControlName="mouldername">
+          <option reeadonly disabled selected>--Select--</option>
+          <option *ngFor="let user of users" [value]="user.oid">{{user.name}}</option>
+        </select> -->
+            <!-- <select  formControlName="mouldername"> -->
+            <!-- <option reeadonly disabled selected>--Select--</option> -->
+            <!-- <option *ngFor="let operator of operators" [value]="operator.name">{{operator.name}}</option> -->
+            <!-- <option value="name2">name2</option> -->
+            <!-- <option value="name6">name6</option> -->
+            <!-- </select> -->
+            <input type="text" formControlName="moulderName" class="bg-light" readonly style="width:60%;">
+        </div>
+        <!-- <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">MOULDING DATE</label>
+            <input type="date"  formControlName="modulingdate" class="bg-light" readonly style="width:60%;">
+        </div> -->
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">SHIFT </label>
+            <input type="text" formControlName="shift" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">M/C NO </label>
+            <input type="text" formControlName="mcNo" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">MOULDING QTY</label>
+            <input type="text" formControlName="mouldingQty" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="next">
+            <h1>--------------------------------------------------------------------</h1>
+            <h6>NEXT OPERATOR</h6>
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">MOULDING DATE</label>
+            <input type="text" formControlName="otsDate" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">FINISHING QTY</label>
+            <input type="text" formControlName="finishingQty" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">SHORT PRODUCT</label>
+            <input type="text" formControlName="totalSortedQty" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="next">
+            <h1>----------------------------------------------------------------------</h1>
+            <h6>NEXT INSPECTOR</h6>
+        </div>
+        <!-- <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">FINISHING QTY</label>
+            <input type="text"  formControlName="mouldingQty" class="bg-light" readonly style="width:60%;">
+        </div> -->
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">INSPECTED DONE BY</label>
+            <input type="text" formControlName="inspectedQty" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">SHORT PRODUCT</label>
+            <input type="text" formControlName="inspectorRejectedQty" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">DATE</label>
+            <input type="text" formControlName="inspectedDate" class="bg-light" readonly style="width:60%;">
+        </div>
+
+        <h1>----------------------------------------------------------------------</h1>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label" ng-focus="true">BARCODE INPUT</label>
+            <input type="text" class="custom-cursor" formControlName="barcode" style=" cursor: pointer;"
+                style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">TOTAL OK QTY</label>
+            <!-- <input type="text"  formControlName="totalOkQty"> -->
+            <button [disabled]="rejectedQty <0 " (click)="handleScan()"> {{ scannedProducts }} </button>
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">TOTAL REJECTED QTY</label>
+            <input type="text" formControlName="totalRejectedQty" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">SHORT QTY</label>
+            <input type="text" formControlName="totalSortedQty" class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label"> REJECTED DATE</label>
+            <input type="text" formControlName="RejectorSubmitDate" style="width:60%;" class="bg-light" readonly>
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">REMARK</label>
+            <input type="text" formControlName="RejectorRemark" style="width:60%;">
+            <!-- totalRejectedQty + inspectedQty = finishingQty -->
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">RESON</label>
+            <input type="text" formControlName="RejectorReson" style="width:60%;">
+        </div>
+
+        <div class="col-md-6">
+            <div class="btn">
+                <button type="button" class="btn btn-success" data-bs-target="#exampleModal"
+                    data-bs-toggle="modal">Submit</button>
+            </div>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                       <h1 class="modal-title fs-5" id="exampleModalLabel" style="align-content: center;">HYPRESS RUBBER MFG.CO.</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!------------------------------------------Modal Body start--------------------------------------------------------------->
+                        <div class="row">
+                            <div class="col-12 border border-dark" style="color: rgb(0, 0, 0);">
+                                <!-- <img src="" /> -->
+                                <h4
+                                    style="font-size: x-large; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                    HYPRESS RUBBER MFG.CO.</h4>
+                                <h6>----------------------------------------------------</h6>
+                                <h1
+                                    style="font-size: larger; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                    SHIRWAL SHINDEWADI, GAT NO.323, TAL-KHANDALA, DIST-SATARA</h1>
+                                <th class="c"
+                                    style="display: contents; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: smaller; padding-left: 10px; padding-right: 10px; padding-top: 10px;padding-bottom: 10px; margin-top: 2%;">
+                                    PARTY NAME : {{data?.custName}}</th><br />
+                                <th class="c"
+                                    style="display: contents; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: smaller; padding-left: 10px; padding-right: 10px; padding-top: 10px;padding-bottom: 10px; margin-top: 2%;">
+                                    DESTINATION : {{data?.city}} </th><br /><br />
+                                <th class="c"
+                                    style="display: contents; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: smaller; padding-left: 10px; padding-right: 10px; padding-top: 10px;padding-bottom: 10px; margin-top: 2%;">
+                                    DESCRIPTION : {{data?.itemDesc}}</th><br />
+                                <th class="c"
+                                    style="display: contents; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: smaller; padding-left: 10px; padding-right: 10px; padding-top: 10px;padding-bottom: 10px; margin-top: 2%;">
+                                    ITEM CODE : {{data?.itemName}}</th><br />
+                                <th class="c"
+                                    style="display: contents; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: smaller; padding-left: 10px; padding-right: 10px; padding-top: 10px;padding-bottom: 10px; margin-top: 2%;">
+                                    CARD NO : {{id}}<br />
+                                <th class="c"
+                                    style="display: contents; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: smaller; padding-left: 10px; padding-right: 10px; padding-top: 10px;padding-bottom: 10px; margin-top: 2%;">
+                                    INVOICE NO : </th><br />
+                                <th class="c"
+                                    style="display: contents; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: smaller; padding-left: 10px; padding-right: 10px; padding-top: 10px;padding-bottom: 10px; margin-top: 2%;">
+                                    QUANTITY : {{data?.boxQty}}</th><br />
+
+                                <th class="c"
+                                    style="display: contents; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: smaller; padding-left: 10px; padding-right: 10px; padding-top: 10px;padding-bottom: 10px; margin-top: 2%;">
+                                    DATE : </th><br />
+                                <p
+                                    style="font-size: large;font-family:'Arial Narrow Bold', sans-serif; margin-top: 2%; text-align: center; text-decoration: initial;">
+                                    THANK YOU !</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button (click)="printPages()" data-bs-dismiss="modal" class="btn btn-primary" style="width: 43%; margin-top: 10px;margin-left: 25%;">PRINT CARD</button>
+                        </div>
+                        <!-- <hr /> -->
+                    </div>
+                    <!------------------------------------------Modal Body end-------------------------------------------------------->
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" (click)="onSubmit()">Save changes</button>
+        </div>
+
+        <!-- Button trigger modal -->
+        <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+        </button> -->
+    </form>
+</div>
+
+<div id="printDiv"></div>

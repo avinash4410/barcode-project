@@ -1,0 +1,42 @@
+
+  .switch {
+    position: relative;
+    align-items: center;
+  
+  }
+  
+  .switch label {
+    width: 35px;
+    height: 23px;
+    background-color: #4594e3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 50px;
+    margin-top: 10%; 
+    margin-left: 5%;
+  }
+  
+  .switch input[type="checkbox"] {
+    visibility: hidden;
+  }
+  
+  .switch label:after {
+    content: '';
+    width: 21px;
+    height: 21px;
+    border-radius: 50px;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    transition: 100ms;
+    background-color: rgb(228, 228, 228);
+  }
+  
+  .switch .look:checked + label:after {
+    left: 32px;
+  }
+  
+  .switch .look:checked + label {
+    background-color: rgb(35, 143, 80);
+  }

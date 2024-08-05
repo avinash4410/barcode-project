@@ -1,0 +1,92 @@
+<h5 style="text-align: center; background: #eae7e7;padding-bottom: 0%;">ITEM REPORT</h5>
+<div class="text-end" style="padding-bottom: 10px;padding-top: 5px;">
+    <button class="btn btn-success btn-block me-1" (click)="exportPDF()">Export to PDF</button>
+    <button id="excel-table" class="btn btn-primary" (click)="exportexcel()">Export to Excel</button>
+</div>
+
+<div class="col-12" style="border: 1px solid black;">
+
+    <div *ngIf="data" class="row"
+        style="border:2px solid rgb(252, 251, 251);margin-top: 2px; border: 10px; box-shadow: inset;">
+        <div id="divTableOldDb" class="divTable tblScroll"
+            style=" height:450px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: medium; padding: 15px;">
+            <!-- <input class="FormControl" placeholder="Search" [(ngModel)] = "searchKeyword" type="text" style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;"> -->
+            <!-- <table class='table table-bordered table-striped table-hover' id='tblOldDb'> -->
+
+            <div class="row">
+                <div class="col-3 mb-3">
+                    <select class="form-control" (change)="getColName($event)">
+                        <option reeadonly disabled selected>search</option>
+                        <!-- <option value="itemName">ITEM NAME</option> -->
+                        <option value="inspectedDate">INSPECTED DATE</option>
+                        <option value="inspectorStartDate">INSPECTED START TIME</option>
+                        <option value="inspectorEndDate">INSPECTED END TIME</option>
+                        <option value="RejectorSubmitDate">REJECTOR SUBMIT DATE</option>
+                        <option value="RejectorStartTime">REJECTOR START TIME</option>
+                        <option value="RejectorEndTime">REJECTOR END TIME</option>
+                    </select>
+                </div>
+                <div *ngIf="colName" class="col-2 form-group">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">From</label>
+                        <div class="col-10"><input type="date" class="form-control" (input)="getDateFrom($event)">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="colName" class="col-2 form-group">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">To</label>
+                        <div class="col-10"><input type="date" class="form-control" (input)="getDateTo($event)">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="colName" class="col-2">
+                    <button class="btn btn-primary mt-0" (click)="searchInDates()">Search</button>
+                </div>
+                <!-- <div class="col-2" style="width:20%;">
+                        <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search" />
+                    </div> -->
+                <div *ngIf="dateFrom" class="col-2">
+                    <button class="btn btn-primary mt-0" (click)="resetFilters()">Reset Filters</button>
+                </div>
+            </div>
+
+            <div class="report">
+                <div class="col-2" style="width:20%;padding-bottom: 10px;">
+                    <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search" />
+                </div>
+                <table id="exportItemTable">
+                    <thead>
+                        <tr>
+                            <th>CARD NUMBER</th>
+                            <th>ITEM NAME</th>
+                            <th>ITEM DESCRIPTION</th>
+                            <th>CUSTMOER NAME</th>
+                            <th>BOX QUANTITY </th>
+                            <!-- <th>Action</th> -->
+                        </tr>
+                    </thead>
+                    <tbody style="background: #ffffff;">
+
+                        <!-- <tr *ngFor="let item of data | filter:searchTerm "> -->
+                        <tr
+                            *ngFor="let item of data | filter:searchTerm| paginate:{ itemsPerPage: itemsPerPage, currentPage : page, totalItems :count}, let i =index">
+
+                            <td>{{ item.cardNo }}</td>
+                            <td>{{ item.itemName }}</td>
+                            <td>{{ item.itemDesc }}</td>
+                            <td>{{item.custName }}</td>
+                            <td>{{ item.boxQty }}</td>
+                            <!-- <td><button class="btn btn-primary"
+                                        [routerLink]="['../../report/summery/',item.cardNo]">View </button>
+                                </td> -->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- </table> -->
+        </div>
+    </div>
+</div>
+<pagination *ngIf="data.length>0" [currentPage]="page" [pageCount]="data.length/itemsPerPage+1"
+    (pageSelected)="changePage($event)"></pagination>

@@ -1,0 +1,18 @@
+input{
+    margin-left: 24px;}
+    .viewbtn{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: #48abe0;
+        color: rgb(14, 13, 13);
+        border: none;
+        padding: 1px;
+        font-size: 18px;
+        height: 30px;
+        width: 53px;
+        border-radius: 30%;
+        box-shadow: 0 2px 4px rgb(47, 52, 79);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }

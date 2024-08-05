@@ -1,0 +1,63 @@
+<h5 ITEM style="text-align: center; background: #eae7e7;padding-bottom: 0%;">ITEM RECORD LIST</h5>
+
+<div class="col-12" style="border: 1px solid black;"><div class="col-12">
+<div *ngIf="items" class="row"
+  style="border:2px solid rgb(252, 251, 251);margin-top: 2px; border: 10px; box-shadow: inset;">
+  <div id="divTableOldDb" class="divTable tblScroll"
+      style=" height:450px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: medium; padding: 15px;">
+      <!-- <input class="FormControl" placeholder="Search" [(ngModel)] = "searchKeyword" type="text" style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;"> -->
+      <!-- <table class='table table-bordered table-striped table-hover' id='tblOldDb'> -->
+
+      <input class="FormControl" [(ngModel)] = "searchKeyword" placeholder="Search" type="text"
+        style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;">
+      <table class='table table-bordered table-striped table-hover' id='tblOldDb'>
+        <thead>
+          <tr class="style" style="font-weight: 200; background-color: rgb(19, 152, 213); text-align: center">
+            <th scope="col" >ITEM NO</th>
+            <th scope="col">ITEM CODE</th>
+            <th scope="col">ITEM DESCRIPTION</th>
+            <th scope="col">BOX QTY</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col" colspan="2">Action</th>
+          </tr>
+        </thead>
+        <tbody  style="background: #ffffff;">
+          <tr
+            *ngFor="let item of items | filter:searchKeyword | paginate:{ itemsPerPage: itemsPerPage, currentPage : page, totalItems :count}">
+            <td style="text-align: center" >{{item.ITEM_NO}}</td>
+            <td>{{item.ITEM_NAME}}</td>
+            <td>{{item.ITEM_DESCRIPTION}}</td>
+            <td style="text-align: center">{{item.BOX_QTY}}</td>
+            <td style="text-align: center">{{item.CUSTOMER_NAME}}</td>
+            <td class="b"><a [routerLink]="['../operation',item.ITEM_NO]">update</a></td>
+            <td ><a (click)="delete(item.ITEM_NO)" style="  display: flex;
+              
+              align-items: center;
+              background-color: #e74136;
+              color: rgb(36, 36, 36);
+              border: none;
+              padding: 4px;
+             margin-bottom: 5px;
+              margin-top: 5px;
+              margin-right: 5px;
+              margin-left: 5px;
+              font-size: 15px;
+              height: 30px;
+              width: 50px;
+              border-radius: 30%;
+              box-shadow: 0 2px 4px rgb(12, 12, 12);
+              cursor: pointer;
+              transition: all 0.2s ease;"> Delete</a></td>
+
+        
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+    <pagination *ngIf="items.length>0" [currentPage]="page" [pageCount]="items.length/itemsPerPage"
+      (pageSelected)="changePage($event)"></pagination>
+  </div>
+</div>

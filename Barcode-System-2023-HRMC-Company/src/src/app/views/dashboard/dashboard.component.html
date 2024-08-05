@@ -1,0 +1,298 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  </head> -->
+<div *ngIf="role=='admin'" style="background-color: rgb(255, 255, 255); padding-top: 15px; padding-right: 15px;padding-bottom: 15px;padding-left: 10px;box-shadow: 8px 8px 16px 2px #040404;">
+  <div class="row" >
+  
+    <div class="col-3">
+      <div class="card" style="width: 18rem;background-color: #321FDB;" [routerLink]="['/item/list']">
+        <div class="card-body ">
+          <!-- <h5 class="card-title">Special title treatment</h5> -->
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          <div class="text-center text-light">
+            <h1>{{allCounts?.ItemCount}}</h1>
+            <br>
+            <h4>Total Items</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3" [routerLink]="['/users/list']">
+      <div class="card" style="width: 18rem;background-color: #3399FF;">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts?.userCount}}</h1>
+            <br>
+            <h4>Total Users </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card" style="width: 18rem;background-color: #F9B115 ">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts?.barcodeCount}}</h1>
+            <br>
+            <h4>Total Barcodes </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card" style="width: 18rem;background-color: #E55353">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>0</h1>
+            <br>
+            <h4>Comming Soon...</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="role=='inspector' || role=='rejector'">
+  <div class="row">
+    <div class="col-3 mb-3">
+      <div class="card" style="width: 18rem;background-color: #321FDB;" [routerLink]="['/item/list']">
+        <div class="card-body ">
+          <!-- <h5 class="card-title">Special title treatment</h5> -->
+          <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+          <div class="text-center text-light">
+            <h1>{{allCounts?.boxQty}}</h1>
+            <br>
+            <h4>Box Quantity </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3" [routerLink]="['/users/list']">
+      <div class="card" style="width: 18rem;background-color: #E55353;">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts?.mouldingQty}}</h1>
+            <br>
+            <h4>Moulding quantity </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3" [routerLink]="['/users/list']">
+      <div class="card" style="width: 18rem;background-color: #3399FF;">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts?.finishingQty}}</h1>
+            <br>
+            <h4>Finishing quantity </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="card" style="width: 18rem;background-color: #F9B115 ">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts?.inspectedQty}}</h1>
+            <br>
+            <h4>Inspected quantity </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card" style="width: 18rem;background-color: #E55353">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts.inspectorRejectedQty}}</h1>
+            <br>
+            <h4>Inspector Rejected</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card" style="width: 18rem;background-color: #c0e43d">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts.totalOkQty}}</h1>
+            <br>
+            <h4>Total OK</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card" style="width: 18rem;background-color: #63bf4c">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts.totalRejectedQty}}</h1>
+            <br>
+            <h4>total Rejected Qty</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card" style="width: 18rem;background-color: #e64988">
+        <div class="card-body ">
+          <div class="text-center text-light">
+            <h1>{{allCounts.totalSortedQty}}</h1>
+            <br>
+            <h4>total Sorted Qty</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- <style>
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+  .row.content {height: 550px}
+  
+  /* Set gray background color and 100% height */
+  .sidenav {
+    background-color: #f1f1f1;
+    height: 100%;
+  }
+      
+  /* On small screens, set height to 'auto' for the grid */
+  @media screen and (max-width: 767px) {
+    .row.content {height: auto;} 
+  }
+</style> -->
+
+
+
+
+
+
+
+  
+<!--   
+  <script>
+    // Draw Circle dashboard
+    var doghnutCharts = document.querySelectorAll('.doghnutChartGroup .circular-progress');
+  
+  for (var h = 0; h < doghnutCharts.length; h++) {
+      var percent = doghnutCharts[h].getAttribute('data-percent');
+      console.log(percent);
+      var degree = 90 + ( ( 360 / 100 ) * Number(percent) );
+      console.log(degree);
+  
+      if (percent > 0 && percent <= 25) {
+          doghnutCharts[h].style.background = 'linear-gradient(90deg, #E0E0E0 50%, transparent 50%, transparent), linear-gradient(' + degree + 'deg , #FF70A6 50%, #E0E0E0 50%, #E0E0E0)';
+      } else if (percent > 25 && percent <= 50) {
+          doghnutCharts[h].style.background = 'linear-gradient(90deg, #E0E0E0 50%, transparent 50%, transparent), linear-gradient(' + degree + 'deg , #FF70A6 50%, #E0E0E0 50%, #E0E0E0)';
+      } else if (percent > 50 && percent <= 75) {
+          doghnutCharts[h].style.background = 'linear-gradient(-90deg, #FF70A6 50%, transparent 50%, transparent), linear-gradient(' + degree + 'deg , #FF70A6 50%, #E0E0E0 50%, #E0E0E0)';
+      } else if (percent > 75 && percent <= 100) {
+          doghnutCharts[h].style.background = 'linear-gradient(-90deg, #FF70A6 50%, transparent 50%, transparent), linear-gradient(' + degree + 'deg , #FF70A6 50%, #E0E0E0 50%, #E0E0E0)';
+      } else {
+          doghnutCharts[h].style.background = 'linear-gradient(90deg, #E0E0E0 50%, transparent 50%, transparent), linear-gradient(90deg , #FF70A6 50%, #E0E0E0 50%, #E0E0E0)';
+      }
+  
+      //doghnutCharts[h].style.background = 'linear-gradient(90deg, #E0E0E0 50%, transparent 50%, transparent), linear-gradient(' + degree + 'deg , #FF70A6 50%, #E0E0E0 50%, #E0E0E0)';
+      console.log(doghnutCharts[h].style.background);
+  }
+  </script> -->
+  
+
+
+<!--    
+<div class=" bg" style="margin-top: 70px;">
+  <c-card-footer>
+    <c-row class="text-center" [md]="5" [xs]="1">
+      <c-col class="mb-sm-8 mb-0">
+        <div class="text-medium-emphasis">Operators</div>
+        <strong>(40%)</strong> 
+        <c-progress class="mt-2" thin>
+          <c-progress-bar color="success" value="40"></c-progress-bar>
+        </c-progress>
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+        <div class="text-medium-emphasis">INSPECED</div>
+        <strong>    (20%)   </strong>
+        <c-progress class="mt-2" thin>
+          <c-progress-bar color="info" value="20"></c-progress-bar>
+        </c-progress>
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+        <div class="text-medium-emphasis">INSPECED</div>
+        <strong>    (150%)   </strong>
+        <c-progress class="mt-2" thin>
+          <c-progress-bar color="info" value="20"></c-progress-bar>
+        </c-progress>
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+        <div class="text-medium-emphasis">REJECTION</div>
+        <strong>  (20%)     </strong>
+        <c-progress class="mt-2" thin>
+          <c-progress-bar color="info" value="20"></c-progress-bar>
+        </c-progress>
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+        <div class="text-medium-emphasis">REJECTION</div>
+        <strong>   (30%)    </strong>
+        <c-progress class="mt-2" thin>
+          <c-progress-bar color="info" value="20"></c-progress-bar>
+        </c-progress>
+      </c-col>
+     
+       
+      
+     </c-row>
+  </c-card-footer>
+
+</div> -->
+
+
+
+<!-- <div *ngIf="role!='admin'" class="mt-2">
+  <c-card class="1" style="width: 100%; margin-top: 5%; box-shadow: 8px 8px 16px 2px #1b3e59; border-radius: 15px;
+  ">
+     <c-card-body>
+
+    </c-card-body> 
+    <c-card-footer>
+      <c-row class="text-center">
+        <c-col class="mb-sm-8 mb-0">
+          <div class="text-medium-emphasis">My Progress</div>
+          <strong>Pending Tasks ({{(allCounts.pendingTask/allCounts.totalTasks)*100}}%)</strong>
+          <c-progress class="mt-2" thin>
+            <c-progress-bar color="success" [value]="(allCounts.pendingTask/allCounts.totalTasks)*100"></c-progress-bar>
+          </c-progress>
+        </c-col>
+        <c-col class="mb-sm-4 mb-0">
+          <div class="text-medium-emphasis">Aru's Progress</div>
+          <strong>Tasks in Progress ({{(allCounts.inProgressTask/allCounts.totalTasks)*100}}%)</strong>
+          <c-progress class="mt-2" thin>
+            <c-progress-bar color="info" [value]="(allCounts.inProgressTask/allCounts.totalTasks)*100"></c-progress-bar>
+          </c-progress>
+        </c-col>
+        <c-col class="mb-sm-4 mb-0">
+          <div class="text-medium-emphasis">Unknown Title</div>
+          <strong>Completed Tasks ({{(allCounts.completedTasks/allCounts.totalTasks)*100}}%)</strong>
+          <c-progress class="mt-2" thin>
+            <c-progress-bar color="info" [value]="(allCounts.completedTasks/allCounts.totalTasks)*100"></c-progress-bar>
+          </c-progress>
+        </c-col>
+      </c-row>
+    </c-card-footer> 
+  </c-card>
+</div> -->

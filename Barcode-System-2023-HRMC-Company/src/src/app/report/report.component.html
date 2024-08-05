@@ -1,0 +1,174 @@
+<div class="text-end" style="padding-bottom: 1px;">
+    <button class="btn btn-success btn-block me-1" (click)="exportPDF()">Export to PDF</button>
+    <button id="excel-table" class="btn btn-primary" (click)="exportexcel()">Export to Excel</button>
+</div>
+<div class="col-12"
+    style="border: 3px solid rgb(251, 251, 251);padding-left: 4px; padding-left: 10px; padding-right: 10px;margin-top: 10px;">
+    <div *ngIf="data" class="row" style="margin-top: 5px;">
+        <div id="divTableOldDb" class="divTable tblScroll"
+            style="height:700px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: smaller;">
+            <!-- <input class="FormControl" placeholder="Search" [(ngModel)] = "searchKeyword" type="text" style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;"> -->
+            <!-- <table class='table table-bordered table-striped table-hover' id='tblOldDb'> -->
+            <!-- <div class="row">   <div class="col-3 " style="padding-bottom: 10px;">
+                    <select class="form-control" (change)="getColName($event)">
+                        <option reeadonly disabled selected>Select column</option>
+                        <option value="">ITEM NAME</option>
+                        <option value="">REJECTER NAME</option>
+                        <option value="">INSPECTERD NAME </option>
+                        <option value="">REJECTOR NAME</option>
+                        <option value="">OPTERER NAME</option>
+                        <option value="">CARD NO</option>
+                        <option value="">ALL</option>
+                    </select>
+                </div></div> -->
+            <div class="row">
+                <div class="col-3 " style="padding-bottom: 10px;">
+                    <select class="form-control" (change)="getColName($event)">
+                        <option reeadonly disabled selected>Select column</option>
+                        <option value="modulingDate">Moduling Date</option>
+                        <option value="inspectedDate">inspected Date</option>
+                        <option value="inspectorStartDate">inspected start time</option>
+                        <option value="inspectorEndDate">inspected End time</option>
+                        <option value="RejectorSubmitDate">Rejector Submit Date</option>
+                        <option value="RejectorStartTime">Rejector Start Time</option>
+                        <option value="RejectorEndTime">Rejector End Time</option>
+                    </select>
+                </div>
+                <div *ngIf="colName" class="col-2 mb-2">
+                    <select class="form-control" (change)="getDatewise($event)">
+                        <option reeadonly disabled selected>Select in Dates</option>
+                        <option value="today">Today</option>
+                        <option value="lastWeak">From last Weak</option>
+                        <option value="lastMonth">From last Month</option>
+                        <option value="last2Months">From last 2 months</option>
+                        <option value="last3Months">from last 3 months</option>
+                        <option value="last4Months">from last 4 months</option>
+                        <option value="custom">Custom</option>
+                    </select>
+                </div>
+                <div *ngIf="colName && customDate" class="col-2 form-group">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">From</label>
+                        <div class="col-10"><input type="date" class="form-control" (input)="getDateFrom($event)">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="colName && customDate" class="col-2 form-group">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">To</label>
+                        <div class="col-10"><input type="date" class="form-control" (input)="getDateTo($event)">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="colName" class="col-1">
+                    <button class="btn btn-primary mt-0" (click)="searchInDates()">Search</button>
+                </div>
+
+                <div *ngIf="dateFrom" class="col-3">
+                    <button class="btn btn-primary mt-0" (click)="resetFilters()">Reset Filters</button>
+                </div>
+
+            </div>
+            <div class="col-sm-2">
+                <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search" />
+            </div>
+            <!-- <div class="text-end">
+                <button class="btn btn-success btn-block me-1" (click)="exportPDF()">Export to PDF</button>
+                <button id="excel-table" class="btn btn-primary" (click)="exportexcel()">Export to Excel</button>
+            </div> -->
+            <div class="col-12">
+                <div *ngIf="data" class="row" style="margin-top: 2px;">
+                    <div id="divTableOldDb" class="divTable tblScroll"
+                        style=" height:500px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                        <!-- <input class="FormControl" placeholder="Search" type="text"
+                style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;"> -->
+                        <table class='table table-bordered table-striped table-hover' id='tblOldDb1'>
+                            <thead>
+                                <tr>
+                                    <th scope="col"> TALLY CARD </th>
+                                    <th scope="col ">JOB CARD NO</th>
+                                    <th scope="col">BARCODE</th>
+                                    <!-- <th scope="col">PART NO</th> -->
+                                    <th scope="col"> CUSTNAME NAME </th>
+                                    <th scope="col">ITEM CODE </th>
+                                    <th scope="col">ITEM DESCRIPTION </th>
+                                    <th scope="col">BATCH CODE</th>
+                                    <th scope="col"> BATCH WEIGHED</th>
+                                    <th scope="col"> BATCH MADE </th>
+                                    <th scope="col">MOULDING QTY</th>
+                                    <th scope="col">MOULDING DATE</th>
+                                    <th scope="col">BOX QTY</th>
+                                    <th scope="col">MOULDER NAME</th>
+                                    <th scope="col">SHIFT</th>
+                                    <th scope="col">MACHINA NO</th>
+                                    <th scope="col">Inspector NAME</th>
+                                    <th scope="col">Rejector NAME</th>
+                                    <th scope="col">INSPECTED DONE BY QTY </th>
+                                    <th scope="col"> INSPECTED DATE </th>
+                                    <th scope="col"> TOTAL OK QTY </th>
+                                    <th scope="col">SHORT QTY </th>
+                                    <th scope="col">Total Rejected</th>
+                                    <th scope="col">FINSHING QTY </th>
+                                    <th scope="col"> REJECTED DATE </th>
+                                    <th scope="col"> REJECTED REMARK </th>
+                                    <th scope="col">RESON </th>
+                                    <th> ACTION</th>
+                                </tr>
+                            </thead>
+                            <tbody style="background: #ffffff">
+                                <tr [class]="d.isChecked ? 'bg-secondary' :'' "
+                                    *ngFor="let d of data | filter:searchTerm| paginate:{ itemsPerPage: itemsPerPage, currentPage : page, totalItems :count}, let i =index">
+                                    <!-- <td class="switch">
+                                        <input id="checkbox1" class="look" type="checkbox">
+
+                                       <label for="myCheck"></label>
+                                    </td> -->
+                                    <td><input type="checkbox" [checked]="d.isChecked" [disabled]="d.isChecked" (change)="onCheckboxChange($event, d)" /></td>
+                                    
+
+                                    <td style="background-color: rgb(219, 255, 255);">{{d.cardNo}}</td>
+                                    <td><a button class="viewbtn" [routerLink]="['../barcode',d.cardNo]">view</a></td>
+                                    <!-- <td>{{d.partNo}}</td> -->
+                                    <td>{{d.custName}}</td>
+                                    <td>{{d.itemName}}</td>
+                                    <td>{{d.itemDesc}}</td>
+                                    <td>{{d.batchCode}}</td>
+                                    <td>{{d.batchWeighed}}</td>
+                                    <td>{{d.batchMadeBy}}</td>
+                                    <td>{{d.mouldingQty}}</td>
+                                    <td>{{d.modulingDate | date :'MMM d,yyyy' }}</td>
+                                    <td>{{d.boxQty}}</td>
+                                    <td>{{d.moulderName}}</td>
+                                    <td>{{d.shift}}</td>
+                                    <td>{{d.mcNo}}</td>
+                                    <td>{{d.inspectorName}}</td>
+                                    <td>{{d.rejectorName}}</td>
+                                    <td>{{d.inspectedQty}}</td>
+                                    <td>{{d.inspectedDate | date :'MMM d,yyyy'}}</td>
+                                    <td>{{d.totalOkQty}}</td>
+                                    <td>{{d.totalSortedQty}}</td>
+                                    <td>{{d.totalRejectedQty}}</td>
+                                    <td>{{d.finishingQty}}</td>
+                                    <td>{{d.RejectorSubmitDate | date :'MMM d,yyyy'}}</td>
+                                    <td>{{d.RejectorRemark}}</td>
+                                    <td>{{d.RejectorReson}}</td>
+
+
+                                    <!-- <button id = "download" class = "toolbarButton download"  style="visibility: hidden;"></button> -->
+                                    <td><button class="viewbtn" [routerLink]="['../report/summery',d.cardNo]">View
+                                        </button>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- </table> -->
+        </div>
+    </div>
+
+</div>
+
+
+<pagination *ngIf="data?.length>0" [currentPage]="page" [pageCount]="data.length/itemsPerPage+1"
+    (pageSelected)="changePage($event)"></pagination>

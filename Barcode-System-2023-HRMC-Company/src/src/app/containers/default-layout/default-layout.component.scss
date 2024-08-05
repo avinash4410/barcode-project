@@ -1,0 +1,7 @@
+:host {
+  ng-scrollbar {
+    --scrollbar-thumb-color: var(--cui-border-color, #6b6969);
+    --scrollbar-track-color: var(--cui-body-color, #ffffff);
+    --scrollbar-hover-size: calc(var(--scrollbar-size) * 1.5);
+  }
+}

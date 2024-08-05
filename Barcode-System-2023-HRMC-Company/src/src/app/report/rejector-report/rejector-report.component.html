@@ -1,0 +1,136 @@
+<h5 style="text-align: center;"> REJECTER RECORD</h5>
+<div class="col-12">
+    <div class="text-end">
+        <button id="pdf-table" class="btn btn-success btn-block me-1" (click)="exportPDF()"
+            style="box-shadow: 0 2px 4px rgb(47, 52, 79); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Export
+            to PDF</button>
+        <button id="excel-table" class="btn btn-primary" (click)="exportexcel()"
+            style="box-shadow: 0 2px 4px rgb(47, 52, 79); font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">Export
+            to Excel</button>
+    </div>
+    <div *ngIf="data" class="row" style="margin-top: 25px;">
+        <div id="divTableOldDb" class="divTable tblScroll"
+            style="border:2px solid rgb(252, 251, 251); height:400px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: smaller;padding-top: 10px;">
+            <!-- <input class="FormControl" placeholder="Search" [(ngModel)] = "searchKeyword" type="text" style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;"> -->
+            <!-- <table class='table table-bordered table-striped table-hover' id='tblOldDb'> -->
+
+            <div class="row">
+                <div class="col-3 mb-3">
+                    <select class="form-control" (change)="getColName($event)">
+                        <option reeadonly disabled selected>Select coumn to search in Dates</option>
+                        <option value="modulingDate">Moduling Date</option>
+                        <option value="inspectedDate">inspected Date</option>
+                        <option value="inspectorStartDate">inspected start time</option>
+                        <option value="inspectorEndDate">inspected End time</option>
+                        <option value="RejectorSubmitDate">Rejector Submit Date</option>
+                        <option value="RejectorStartTime">Rejector Start Time</option>
+                        <option value="RejectorEndTime">Rejector End Time</option>
+                    </select>
+                </div>
+                <div *ngIf="colName" class="col-3 form-group">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">From</label>
+                        <div class="col-10"><input type="date" class="form-control" (input)="getDateFrom($event)">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="colName" class="col-3 form-group">
+                    <div class="row">
+                        <label class="col-sm-2 col-form-label">To</label>
+                        <div class="col-10"><input type="date" class="form-control" (input)="getDateTo($event)">
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="colName" class="col-3">
+                    <button class="btn btn-primary mt-0" (click)="searchInDates()">Search</button>
+                </div>
+                <!-- <div class="col-3">
+                        <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search" />
+                    </div> -->
+                <div *ngIf="dateFrom" class="col-3">
+                    <button class="btn btn-primary mt-0" (click)="resetFilters()">Reset Filters</button>
+                </div>
+            </div>
+            <div class="col-3">
+                <input type="text" [(ngModel)]="searchTerm" class="form-control" placeholder="Search" />
+            </div>
+            <div class="report">
+                <table id="exportRejectorReport">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <th>REJECTER ID</th>
+                            <th>REJECTER NAME</th>
+                            <th>TASK WORK QTY</th>
+                            <th>STARTING TIME</th>
+                            <th>END TIME</th>
+                            <th>COMPLETED TASK</th>
+                            <th>COUNT TIME</th>
+                            <!-- <th >ACTION</th> -->
+                            <th colspan="2" style="text-align:center ;">ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody style="background: #fcfcfc; ">
+                        <!-- <tr *ngFor="let item of data | filter:searchTerm "> -->
+                        <tr [class]="item.isChecked ? 'bg-secondary' :'' "
+                            *ngFor="let item of data | filter:searchTerm| paginate:{ itemsPerPage: itemsPerPage, currentPage : page, totalItems :count}, let i =index">
+                            <td><input type="checkbox" [checked]="item.isChecked" [disabled]="item.isChecked"
+                                    (change)="onCheckboxChange($event, item)" /></td>
+                            <td> {{ item.rejectorId }}</td>
+                            <td>{{ item.rejectorName }}</td>
+                            <td>{{ item.finishingQty }}</td>
+                            <td>{{ item.RejectorStartTime | date :'MMM dd yyy, hh:mm' }}</td>
+                            <td>{{ item.RejectorEndTime | date :'MMM dd yyy, hh:mm' }}</td>
+                            <td>{{ item.totalOkQty }}</td>
+                            <td>{{ getCount(item.RejectorStartTime,item.RejectorEndTime) }}</td>
+                            <td>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal" (click)="modalData(item)">
+                                    TimeSheet
+                                </button>
+                            </td>
+                            <td>
+                                <button class="viewbtn" [routerLink]="['../../report/rejector/',item.cardNo]"
+                                    style="padding-top: 0%; margin-top: 1px; ">View </button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+    </div>
+
+    <pagination *ngIf="data?.length>0" [currentPage]="page" [pageCount]="data.length/itemsPerPage+1"
+        (pageSelected)="changePage($event)"></pagination>
+    <!-- <button (click)="generateReport()">Generate Report</button> -->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">TIME SHEET TASK TIME </h5>
+                    <button class="btn btn-primary" (click)="printBarcodeInfo()">Print</button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <th>PRODUCT BARCODE NO</th>
+                            <th>SCAN DATE / TIME </th>
+                        </tr>
+                        <tr *ngFor="let b of barcodeData">
+                            <td>{{b.barcode}}</td>
+                            <td>{{b.SCAN_DATE | date :'MMM dd yyy, hh:mm'}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+            </div>
+        </div>
+    </div>

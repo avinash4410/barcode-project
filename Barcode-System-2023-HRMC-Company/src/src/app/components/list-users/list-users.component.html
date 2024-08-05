@@ -1,0 +1,82 @@
+<div class="col-12">
+  <h5 style="text-align: center; padding-bottom: 10px;">NEW USER RECORD LIST </h5>
+  <div class="row">
+    <div class="h" style="padding: 0px; align-content: center; background-color: rgb(200, 211, 211);">
+
+      <div class="row">
+        <div class="col-2">
+          <button class="btn btn-success" (click)="getAllUser()"  style="font-size: small;text-shadow: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">ALL USER</button>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-primary" (click)="getUserByRole('admin')" style="font-size: small;text-shadow: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">ADMIN USERS</button>
+        </div>
+        <!-- <div class="col-2">
+          <button class="btn btn-outline-success" (click)="getUserByRole('manager')" style="font-size: small;text-shadow: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">MANAGER USERS</button>
+        </div> -->
+        <div class="col-2">
+          <button class="btn btn-outline-danger" (click)="getUserByRole('inspector')"  style="font-size: small;text-shadow: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">INSPECTOR </button>
+        </div>
+        <div class="col-2">
+          <button class="btn btn-outline-danger" (click)="getUserByRole('rejector')"  style="font-size: small;text-shadow: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">REJECTOR</button>
+          <!-- <button>Rejector</button> -->
+        </div>
+        <div class="col-2">
+          <button class="btn btn-outline-danger" (click)="getUserByRole('operator')"  style="font-size: small;text-shadow: 10px;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" >OPTERTOR</button>
+          <!-- <button>Rejector</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col-12">
+  <div *ngIf="users" class="row" style="margin-top: 25px;">
+    <div id="divTableOldDb" class="divTable tblScroll"
+      style="border:2px solid rgb(252, 251, 251); height:300px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: smaller;">
+      <input type="text" [(ngModel)]="term" placeholder="Search" style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;">
+      <table class='table table-bordered table-striped table-hover' id='tblOldDb'>
+        <thead >
+          <tr class="style" style="font-weight: 200; background-color: rgb(19, 152, 213);text-align: center">
+            <th scope="col " >OPERATOR ID</th>
+            <th scope="col" > NAME</th>
+            <th scope="col">USERNAME</th>
+            <th scope="col">PASSWORD</th>
+            <th scope="col">MOBILE NUMBER</th>
+            <th scope="col">ADDRESS</th>
+            <th scope="col">CITY </th>
+            <th scope="col">DATE OF BIRTH</th>
+            <th scope="col">DATE OF JOIN</th>
+            <th scope="col">USER ROLE</th>
+            <th scope="col" colspan="2">action</th>
+          </tr>
+        </thead>
+        <tbody style="background: #ffffff;">
+          <tr *ngFor="let user of users | filter: term | paginate:{ itemsPerPage: itemsPerPage, currentPage : page, totalItems :count}">
+            <td style="background-color: rgb(113, 186, 255); text-align: center;">{{user.oid}}</td>
+            <td>{{user.name}}</td>
+            <td style="background-color: rgb(141, 207, 233);text-align: center;">{{user.username}}</td>
+            <td style="background-color: rgb(161, 200, 255);text-align: center;">{{user.password}}</td>
+            <td>{{user.mobile}}</td>
+            <td>{{user.Address}}</td>
+            <td>{{user.city}}</td>
+            <td style="text-align: center;">{{user.dob | date }}</td>
+            <td>{{user.joindate | date}}</td>
+            <td style="background-color: rgb(195, 207, 255);">{{user.role}}</td>
+            <td><a [routerLink]="['../new',user.oid]">Update</a></td>
+          <td ><a (click)="delete(user.oid)"> Delete</a></td>
+          </tr>
+          <!-- <button type="button" class="btn btn-primary btn-floating" mdbRipple>
+            <i class="fas fa-download"></i>
+          </button> -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="1" style="margin-top: 10px;border-radius: 0cm;">
+<!-- <pagination *ngIf="totalRecords>0" [currentPage]="page" [pageCount]="totalRecords/limit"
+  (pageSelected)="changePage($event)"></pagination> -->
+  <pagination *ngIf="users?.length>0" [currentPage]="page" [pageCount]="users.length/itemsPerPage"
+    (pageSelected)="changePage($event)"></pagination>
+
+
+</div>

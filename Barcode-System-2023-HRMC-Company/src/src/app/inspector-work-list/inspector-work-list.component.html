@@ -1,0 +1,73 @@
+<div class="col-12">
+    <div *ngIf="data" class="row" style="margin-top: 20px;">
+        <div id="divTableOldDb" class="divTable tblScroll" style="border:2px solid rgb(252, 251, 251); height:450px; overflow:auto; text-align: justify; font-family:
+            'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: smaller;">
+            <input class="FormControl" [(ngModel)]="searchTerm" placeholder="Search" type="text"
+                style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px; ">
+            <!-- <table class='table table-bordered table-striped table-hover' id='tblOldDb'> -->
+            <h2 *ngIf="data && data.length == 0" class="mt-5 text-center text-success">No Data Found...!</h2>
+            <table *ngIf="data && data.length>0" class='table table-bordered table-striped table-hover'
+                style="margin-bottom: 10px;">
+
+
+                <thead>
+                    <tr class="style" style="font-weight: 200; background-color: rgb(19, 152, 213);">
+                        <th></th>
+                        <!-- <th scope="col">#</th> -->
+                        <th scope="col">JOBCARD</th>
+                        <th>WROK SHOW</th>
+                        <th>Status</th>
+                        <!-- <th scope="col" style="background-color: antiquewhite;">BARCODE</th> -->
+                        <th scope="col">BATCH CODE</th>
+                        <th scope="col"> BATCH MADE</th>
+                        <th scope="col"> BATCH WEIGHED</th>
+                        <th scope="col"> CUSTNAME</th>
+                        <th scope="col">ITEM DESCRIPTION </th>
+                        <th scope="col">MACHINA NO</th>
+                        <th scope="col">MOULDING DATE</th>
+                        <th scope="col">MOULDER NAME</th>
+                        <th scope="col">MOULDING QTY</th>
+                        <!-- <th scope="col">USER ID</th> -->
+                        <!-- <th scope="col">NAME</th> -->
+                        <th scope="col">SHIFT</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr [class]="d.isChecked ? 'bg-secondary' :'' "
+                        *ngFor="let d of data | filter:searchTerm | paginate:{ itemsPerPage: itemsPerPage, currentPage : page, totalItems :count}, let i =index">
+                        <td><input type="checkbox" [checked]="d.isChecked" [disabled]="d.isChecked" (change)="onCheckboxChange($event, d)" /></td>
+                        <td>{{d.cardNo}}</td>
+                        <!-- <td>{{i+1}}</td> -->
+                        <td style="background-color: rgb(250, 252, 253);"><a routerLink="../work/{{d.cardNo}}">View
+                                Task</a></td>
+                        <td>{{d.inspectorStartDate ? d.inspectorEndDate? 'completed':'In Progress':'Pending'}}</td>
+                        <!-- <td><a (click)="delete(d._id)"> Delete</a></td> -->
+                        <!-- <td style="background-color: antiquewhite;"><a routerLink="/barcode/{{d.cardNo}}">View barcode</a></td> -->
+                        <td>{{d.batchCode}}</td>
+                        <td>{{d.batchMadeBy}}</td>
+                        <td>{{d.batchWeighed}}</td>
+                        <td>{{d.custName}}</td>
+                        <td>{{d.itemDesc}}</td>
+                        <td>{{d.mcNo}}</td>
+                        <td>{{d.modulingDate|date}}</td>
+                        <td>{{d.moulderName}}</td>
+                        <td>{{d.mouldingQty}}</td>
+                        <!-- <td>{{d.oid}}</td> -->
+                        <!-- <td>{{d.oname}}</td> -->
+                        <td>{{d.shift}}</td>
+
+
+
+
+                    </tr>
+
+                </tbody>
+                <!-- batchMadeBy,batchcode,batchweighed,custname,itemDesc,mcNo,mcNo,mouldername,mouldingQty,oid,oname,shift -->
+            </table>
+
+        </div>
+    </div>
+</div>
+<pagination *ngIf="data?.length>0" [currentPage]="page" [pageCount]="data.length/itemsPerPage+1"
+    (pageSelected)="changePage($event)" style="top: 1%;"></pagination>

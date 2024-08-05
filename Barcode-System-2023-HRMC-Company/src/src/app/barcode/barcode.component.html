@@ -1,0 +1,12 @@
+<div *ngIf="!showPrint">
+    <div class="row">
+        <div *ngFor="let barcode of barcodeData" class="col-4">
+            <img class="m-1 " width="250px" [src]="generateBarcodeImage(barcode.barcode)" alt="Barcode">
+        </div>
+    </div>
+    <button class="btn btn-outline-success mt-3" (click)="printPages()">Print all Barcodes</button>
+</div>
+
+<div id="printDiv">
+    
+</div>

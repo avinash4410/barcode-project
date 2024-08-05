@@ -1,0 +1,68 @@
+<h5 style="text-align: center;">NEW ITEM ADD </h5>
+<div class="card mx-auto p-4" style="width: 77rem; background-color: rgb(79, 108, 147); margin-top:1%;  ">
+  <form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()" class="row g-6" class="row"
+    style="background-color: rgb(255, 255, 255); padding-top: 2%; margin-left: 25px;">
+
+    <!-- <div class="row"> -->
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+          background-color:whitesmoke;" name="input" class="form-label">ITEM NO</label>
+      <input type="text" formControlName="itemNo" style="width: 60%; margin-left: 25px;" class="bg-light" readonly>
+      <small class="text-danger" *ngIf="!myReactiveForm.get('itemNo')?.valid && myReactiveForm.get('itemNo')?.touched">
+        <span *ngIf="myReactiveForm.get('itemNo')?.errors?.['required']"> required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral; background-color:whitesmoke;" name="input"
+        class="form-label">ITEM CODE</label>
+      <input type="text" formControlName="itemName" style="width: 60%; margin-left: 25px;">
+      <small class="text-danger"
+        *ngIf="myReactiveForm.get('itemName')?.touched && myReactiveForm.get('itemName')?.hasError('required')">
+        Item code is required
+      </small>
+
+    </div>
+    
+   
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+          background-color:whitesmoke;" name="input" class="form-label">ITEM DESCRIPTION</label>
+      <input type="text" formControlName="itemDesc" style="width: 60%; margin-left: 25px;">
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('itemDesc')?.valid && myReactiveForm.get('itemDesc')?.touched">
+        <span *ngIf="myReactiveForm.get('itemDesc')?.errors?.['required']">*Item desrciption required</span>
+      </small>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+          background-color:whitesmoke;" name="input" class="form-label"> BOX QTY </label>
+      <input type="text" formControlName="boxQty" style="width: 60%; margin-left: 25px;">
+      <small class="text-danger" *ngIf="!myReactiveForm.get('boxQty')?.valid && myReactiveForm.get('boxQty')?.touched">
+        <span *ngIf="myReactiveForm.get('boxQty')?.errors?.['required']">*Box quantity required</span>
+      </small>
+    </div>
+
+    <div class="col-md-6">
+      <label style="border-left: 10px solid lightcoral;
+  background-color:whitesmoke;" name="input" class="form-label">CUSTOMER NAME</label>
+      <!-- <input type="text" formControlName="custName"> -->
+      <select formControlName="customerName" style="margin-left: 25px; width: 60%;">
+        <option reeadonly disabled selected>--Select--</option>
+        <option *ngFor="let customer of customers" [ngValue]="customer.CUSTOMER_NAME" style="width: 60%;">
+          {{customer.CUSTOMER_NAME}}
+        </option>
+      </select>
+      <small class="text-danger"
+        *ngIf="!myReactiveForm.get('customerName')?.valid && myReactiveForm.get('customerName')?.touched">
+        <span *ngIf="myReactiveForm.get('customerName')?.errors?.['required']">Customer name required</span>
+      </small>
+    </div>
+    <small class="text-danger" *ngIf="duplicateItemError" style="text-align: left;">
+      Item same name already exists
+    </small>
+    <div class="col-md-12 text-center mt-3">
+      <button type="submit" class="btn btn-success" style="margin-bottom: 1%;">Submit</button>
+    </div>
+    
+  </form>
+</div>

@@ -1,0 +1,103 @@
+<div class="h6">
+    <h4>{{id? 'Update Info':'ADD USER'}}</h4>
+</div>
+<div class="card mx-auto p-4" style="width: 77rem; background-color: rgb(79, 108, 147); margin-top:2%; ">
+    <div class="row g-6">
+        <form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()"  class="row "
+        style="background-color: rgb(255, 255, 255); padding-top: 2%;">
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">Name</label>
+                <input type="text" formControlName="name" style="width: 60%;">
+                <small class="text-danger" *ngIf="!myReactiveForm.get('name')?.valid && myReactiveForm.get('name')?.touched">
+                    <div *ngIf="myReactiveForm.get('name')?.errors?.['required']">Name required</div>
+                  </small>
+            </div>
+
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">Username</label>
+                <input type="text" formControlName="username" style="width: 60%;">
+                <small class="text-danger" *ngIf="!myReactiveForm.get('username')?.valid && myReactiveForm.get('username')?.touched">
+                    <span *ngIf="myReactiveForm.get('username')?.errors?.['required']">Username required</span>
+                  </small>
+            </div>
+
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">Password</label>
+                <input type="password" formControlName="password" style="width: 60%;">
+                <small class="text-danger" *ngIf="!myReactiveForm.get('password')?.valid && myReactiveForm.get('password')?.touched">
+                    <div *ngIf="myReactiveForm.get('password')?.errors?.['required']">Password required</div>
+                  </small>
+            </div>
+
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">Mobile Number</label>
+                <input type="phone" formControlName="mobile" style="width: 60%;">
+                <small class="text-danger" *ngIf="!myReactiveForm.get('mobile')?.valid && myReactiveForm.get('mobile')?.touched">
+                    <div *ngIf="myReactiveForm.get('mobile')?.errors?.['required']">Mobile number required</div>
+                    <div *ngIf="myReactiveForm.get('mobile')?.errors?.['maxlength']">INVALID NO</div>
+                  </small>
+            </div>
+
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">Address</label>
+                <input type="text" formControlName="Address" style="width: 60%;">
+                <small class="text-danger" *ngIf="!myReactiveForm.get('Address')?.valid && myReactiveForm.get('Address')?.touched">
+                    <div *ngIf="myReactiveForm.get('Address')?.errors?.['required']">Address required</div>
+                  </small>
+            </div>
+
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">City</label>
+                <input type="text" formControlName="city" style="width: 60%;">
+                <small class="text-danger" *ngIf="!myReactiveForm.get('city')?.valid && myReactiveForm.get('city')?.touched">
+                    <div *ngIf="myReactiveForm.get('city')?.errors?.['required']">City required</div>
+                  </small>
+            </div>
+
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">Date of Birth</label>
+                <input type="date" formControlName="dob" style="width: 60%;">
+                <small class="text-danger" *ngIf="!myReactiveForm.get('dob')?.valid && myReactiveForm.get('dob')?.touched">
+                    <div *ngIf="myReactiveForm.get('dob')?.errors?.['required']">Date of birth required</div>
+                  </small>
+            </div>
+
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">Join Date</label>
+                <input type="date" formControlName="joindate" style="width: 60%;">
+                <small class="text-danger" *ngIf="!myReactiveForm.get('joindate')?.valid && myReactiveForm.get('joindate')?.touched">
+                    <div *ngIf="myReactiveForm.get('joindate')?.errors?.['required']">Join date required</div>
+                  </small>
+            </div>
+
+            <div class="col-md-6 ">
+                <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">Role</label>
+                <!-- <input type="text" formControlName="role"> -->
+
+                <select formControlName="role" style="width: 60%; margin-left: 25px;">
+
+                    <option reeadonly disabled selected>--Select--</option>
+                    <option value="operator">operator</option>
+                    <option value="admin">admin</option>
+                    <option value="manager">Manager</option>
+                    <option value="supervisor">supervisor</option>
+                    <option value="rejector">rejector</option>
+                    <option value="inspector">inspector</option>
+                </select>
+                <small class="text-danger" *ngIf="!myReactiveForm.get('role')?.valid && myReactiveForm.get('role')?.touched">
+                    <div *ngIf="myReactiveForm.get('role')?.errors?.['required']">Role required</div>
+                  </small>
+            </div>
+            <button type="submit" class="btn btn-success" style="margin-top: 1%; margin-bottom: 1%; width: 7%;">Submit</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,100 @@
+<div class="card mx-auto p-4" style="width: 55rem;">
+  <form [formGroup]="myReactiveForm" (ngSubmit)="onSubmit()" class="row g-6">
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke; background-color: antiquewhite;" name="input" class="form-label">JOB CARD NO</label>
+      <input type="text" class="bg-light" formControlName="cardNo" readonly>
+    </div>
+    
+
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">CUSTOMER NAME</label>
+      <input type="text" formControlName="custName" class="bg-light" readonly>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">ITEM DESCRIPTION</label>
+      <input type="text" formControlName="itemDesc" class="bg-light" readonly>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">BATCH CODE</label>
+      <input type="text" formControlName="batchCode" class="bg-light" readonly>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">BATCH WEIGHED BY</label>
+      <input type="text" formControlName="batchWeighed" class="bg-light" readonly>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">BATCH MADE BY</label>
+      <input type="text" formControlName="batchMadeBy" class="bg-light" readonly>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">MOULDING DATE</label>
+      <input type="text" formControlName="modulingDate" class="bg-light" readonly>
+    </div>
+
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">MOULDER NAME</label>
+      <!-- <select formControlName="mouldername">
+        <option reeadonly disabled selected>--Select--</option>
+        <option *ngFor="let user of users" [value]="user.oid">{{user.name}}</option>
+      </select> -->
+      <!-- <select formControlName="mouldername"> -->
+      <!-- <option reeadonly disabled selected>--Select--</option> -->
+      <!-- <option *ngFor="let operator of operators" [value]="operator.name">{{operator.name}}</option> -->
+      <!-- <option value="name2">name2</option> -->
+      <!-- <option value="name6">name6</option> -->
+      <!-- </select> -->
+      <input type="text" formControlName="moulderName" class="bg-light" readonly>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">SHIFT </label>
+      <input type="text" formControlName="shift" class="bg-light" readonly>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">M/C NO </label>
+      <input type="text" formControlName="mcNo" class="bg-light" readonly>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">MOULDING QTY</label>
+      <input type="text" formControlName="mouldingQty" class="bg-light" readonly>
+    </div>
+    <!-- <div class="next">
+      <h1>---------------------------------------------------</h1>
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">FINISHING QTY</label>
+      <input type="text" formControlName="finishingQty" placeholder="" (input)="updateQty($event)">
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">Date</label>
+      <input type="text" formControlName="otsDate" placeholder="">
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">SORT QTY </label>
+      <input type="text" formControlName="sortQty" placeholder="">
+    </div>
+    <div class="col-md-6">
+      <label style="border-left: 6px solid lightcoral;
+      background-color:whitesmoke;" name="input" class="form-label">REMARK</label>
+      <input type="text" formControlName="remark" placeholder="">
+    </div>
+    <div class="col-md-6">
+      <div class="btn">
+
+        <button type="submit" class="btn btn-success">Submit</button>
+      </div>
+    </div> -->
+  </form>

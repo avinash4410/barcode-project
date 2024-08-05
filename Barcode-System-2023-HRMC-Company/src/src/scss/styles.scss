@@ -1,0 +1,86 @@
+/* You can add global styles to this file, and also import other style files */
+// If you want to override variables do it here
+@import "variables";
+
+$enable-ltr: true;
+$enable-rtl: true;
+
+// Import styles with default layout.
+@import "@coreui/coreui/scss/coreui";
+
+// Import Chart.js custom tooltips styles
+@import "@coreui/chartjs/scss/coreui-chartjs";
+
+// perfect scrollbar theming for use with [perfectScrollbar] directive
+//@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+
+@import "layout";
+
+// Some temp fixes
+@import "fixes";
+
+// Prism.js
+@import "examples";
+
+// If you want to add something do it here
+@import "custom";
+
+
+.box-print {
+    margin:auto;
+    // margin-top: 30px;
+    padding: 10px;
+    border: 1px solid #000;
+    border-width: 3px;
+    // margin-bottom: -9;
+}
+
+.box-title{
+    font-style:'Garamond';
+    font-size: 45px;
+    text-align: center;
+    font-weight: 700;   
+}
+.box-sub-title{
+    font-style: 'Candara';
+    // margin-top: 10px;
+    font-size: 22px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.box-print>table{
+    // margin-top: 50px;
+}
+
+.box-print>table>tbody>tr>td{
+    font-weight: 400;
+    font-size: 20px;
+    font-style: 'Candara';
+    // padding:7px 0px;
+    // padding-left:30px;
+    font-size: 18px;
+}
+
+.barcode-page {
+    margin-bottom: -9;
+    margin-left: 30px;
+    margin-top: 1%;
+    // padding: 20px;
+    // border: 1px solid #000;
+    // margin-bottom: 10px;
+    // padding: 20px;
+}
+
+@media print {
+    @page { margin: 0; } //Remove headers & footers
+    // body { margin: 1.6cm; }
+
+    .box-print {
+        page-break-after: always;
+        
+    }
+    .barcode-page {
+        page-break-after: always;
+    }
+}

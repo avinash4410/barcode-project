@@ -1,0 +1,110 @@
+<!-- <div class="text-end" style="padding-bottom: 10px;">
+    <button class="btn btn-success btn-block me-1" (click)="exportPDF()">Export to PDF</button>
+    <button id="excel-table" class="btn btn-primary" (click)="exportexcel()">Export to Excel</button>
+</div> -->
+<h5 style="text-align: center;">SINGLE RECORD SUMMERY</h5>
+<div class="col-12">
+    <div *ngIf="data" class="row" style="margin-top: 25px;">
+        <div id="divTableOldDb" class="divTable tblScroll"
+            style="border:2px solid rgb(247, 245, 245); height:1400px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: large;">
+            <!-- <input class="FormControl" placeholder="Search" [(ngModel)] = "searchKeyword" type="text" style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;"> -->
+            <table class='table table-bordered table-striped table-hover' id='tblOldDb'>
+
+                <tr>
+                    <th style="color: rgba(240, 12, 12, 0.5);">Card Number</th>
+                    <td style="color: rgba(240, 12, 12, 0.5);">{{data?.cardNo}}</td>
+                </tr>
+                <tr>
+                    <th>Customer Name</th>
+                    <td>{{data?.custName}}</td>
+                </tr>
+                <tr>
+                    <th>Item Code</th>
+                    <td>{{data?.itemName}}</td>
+                </tr>
+                <tr>
+                    <th>Item Description</th>
+                    <td>{{data?.itemDesc}}</td>
+                </tr>
+                <tr>
+                    <th>Batch Code</th>
+                    <td> {{data?.batchCode}}</td>
+                </tr>
+                <tr>
+                    <th>Batch Weight</th>
+                    <td>{{data?.batchWeighed}}</td>
+                </tr>
+                <tr>
+                    <th>Batch Made By</th>
+                    <td> {{data?.batchMadeBy}}</td>
+                </tr>
+                <tr>
+                    <th>Moduling Quantity</th>
+                    <td>{{data?.mouldingQty}}</td>
+                </tr>
+                <tr>
+                    <th>Moduling Date</th>
+                    <td> {{data?.modulingDate | date :'MMM d,yyyy' }}</td>
+                </tr>
+                <tr>
+                    <th>Box Quantity</th>
+                    <td>{{data?.boxQty}}</td>
+                </tr>
+                <tr>
+                    <th>Moulder Name</th>
+                    <td>{{data?.moulderName}}</td>
+                </tr>
+                <tr>
+                    <th>Shift</th>
+                    <td>{{data?.shift}}</td>
+                </tr>
+                <tr>
+                    <th>MC Number</th>
+                    <td>{{data?.mcNo}}</td>
+                </tr>
+                <tr>
+                    <th>Inspector Name</th>
+                    <td>{{data?.inspectorName}}</td>
+                </tr>
+                <tr>
+                    <th>Rejector Name</th>
+                    <td>{{data?.rejectorName}}</td>
+                </tr>
+                <tr>
+                    <th>Inspected Quantity</th>
+                    <td>{{data?.inspectedQty}}</td>
+                </tr>
+                <tr>
+                    <th>Inspected Date</th>
+                    <td>{{data?.inspectedDate | date :'MMM d,yyyy'}}</td>
+                </tr>
+                <tr>
+                    <th>Total Ok Quantity</th>
+                    <td> {{data?.totalOkQty}}</td>
+                </tr>
+                <tr>
+                    <th>Total Sorted Quantity</th>
+                    <td> {{data?.totalSortedQty}}</td>
+                </tr>
+                <tr>
+                    <th>Total Rejected Quantity</th>
+                    <td>{{data?.totalRejectedQty}}</td>
+                </tr>
+                <tr>
+                    <th>Rejector Submit Date</th>
+                    <td> {{data?.RejectorSubmitDate | date :'MMM d,yyyy'}}</td>
+                </tr>
+                <tr>
+                    <th>Rejector Remark</th>
+                    <td>{{data?.RejectorRemark}}</td>
+                </tr>
+                <tr>
+                    <th>Rejector Reason</th>
+                    <td>{{data?.RejectorReson}}</td>
+                </tr>
+            </table>
+            <button class="viewbtn" onclick="window.print()">Print </button>
+
+        </div>
+    </div>
+</div>

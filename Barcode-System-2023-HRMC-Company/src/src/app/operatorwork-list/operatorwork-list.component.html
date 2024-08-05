@@ -1,0 +1,62 @@
+<div class="col-12">
+    <div *ngIf="data" class="row" style="margin-top: 25px;">
+        <div id="divTableOldDb" class="divTable tblScroll" style="border:2px solid rgb(252, 251, 251); height:700px; overflow:auto; text-align: justify; font-family:
+            'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: smaller;">
+            <input class="FormControl" placeholder="Search" type="text" [(ngModel)] = "searchKeyword" style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;">
+            <!-- <table class='table table-bordered table-striped table-hover' id='tblOldDb'> -->
+            <h2 *ngIf="data && data.length == 0" class="mt-5 text-center text-success">No Data Found...!</h2>
+            <table *ngIf="data && data.length>0" class='table table-bordered table-striped table-hover'>
+                <thead>
+                    <tr class="style" style="font-weight: 200; background-color: rgb(19, 152, 213);">
+                        <th scope="col">#</th>
+                        <th style="background-color: rgb(248, 189, 111);">WROK SHOW</th>
+                        <!-- <th scope="col" style="background-color: antiquewhite;">BARCODE</th> -->
+                        <!-- <th scope="col" style="background-color: rgb(248, 189, 111);">JOB CARD NO</th> -->
+                        <th scope="col">BATCH CODE</th>
+                        <th scope="col"> BATCH MADE</th>
+                        <th scope="col"> BATCH WEIGHED</th>
+                        <th scope="col"> CUSTNAME</th>
+                        <th scope="col">ITEM DESCRIPTION </th>
+                        <th scope="col">MACHINA NO</th>
+                        <th scope="col">MOULDING DATE</th>
+                        <th scope="col">MOULDER NAME</th>
+                        <th scope="col">MOULDING QTY</th>
+                        <!-- <th scope="col">USER ID</th> -->
+                        <!-- <th scope="col">NAME</th> -->
+                        <th scope="col">SHIFT</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let d of data | filter:searchKeyword">
+                        <td>{{d.cardNo}}</td>
+                        <td style="background-color:  rgb(248, 189, 111);"><a routerLink="../work/{{d.cardNo}}">View Task</a></td>
+                        <!-- <td><a (click)="delete(d._id)"> Delete</a></td> -->
+                        <!-- <td style="background-color: antiquewhite;"><a routerLink="/barcode/{{d.cardNo}}">View barcode</a></td> -->
+                        <!-- <td> {{ d.cardNo}}</td> -->
+                        <td >{{d.batchCode}}</td>
+                        <td>{{d.batchMadeBy}}</td>
+                        <td>{{d.batchWeighed}}</td>
+                        <td>{{d.custName}}</td>
+                        <td>{{d.itemDesc}}</td>
+                        <td>{{d.mcNo}}</td>
+                        <td>{{d.modulingDate}}</td>
+                        <td style="background-color: rgb(219, 245, 71);">{{d.moulderName}}</td>
+                        <td>{{d.mouldingQty}}</td>
+                        <!-- <td>{{d.oid}}</td> -->
+                        <!-- <td>{{d.oname}}</td> -->
+                        <td>{{d.shift}}</td>
+                    </tr>
+
+                </tbody>
+                <!-- batchMadeBy,batchcode,batchweighed,custname,itemDesc,mcNo,mcNo,mouldername,mouldingQty,oid,oname,shift -->
+            </table>
+        </div>
+    </div>
+</div>
+<div class="1" style="margin-top: 10px;border-radius: 0cm;">
+    <pagination *ngIf="totalRecords>0" [currentPage]="page" [pageCount]="totalRecords/limit+1"
+      (pageSelected)="changePage($event)"></pagination>
+    <app-barcode></app-barcode>
+    
+    </div>

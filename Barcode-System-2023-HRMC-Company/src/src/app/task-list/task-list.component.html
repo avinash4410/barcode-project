@@ -1,0 +1,75 @@
+
+<h5 style="text-align: center;">JOB CARD WORK RECORD LIST </h5><div class="col-12">
+    <div *ngIf="data" class="row" style="margin-top: 25px;">
+        <div id="divTableOldDb" class="divTable tblScroll" style="border:2px solid rgb(252, 251, 251); height:500px; overflow:auto; text-align: justify; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: smaller;">
+            <input class="FormControl" placeholder="Search" [(ngModel)] = "searchKeyword" type="text" style=" padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;">
+            <table class='table table-bordered table-striped table-hover' id='tblOldDb'>
+                <thead>
+                    <tr class="style" style="font-weight: 200; background-color: rgb(19, 152, 213);text-align: center">
+                        <td></td>
+                        <th scope="col"> JOB CARD NO</th>
+                        <th scope="col" >BARCODE</th>
+                        <th scope="col">BATCH CODE</th>
+                        <th scope="col"> BATCH MADE</th>
+                        <th scope="col"> BATCH WEIGHED</th>
+                        <th scope="col"> CUSTNAME</th>
+                        <th scope="col">ITEM CODE </th>
+                        <th scope="col">ITEM DESCRIPTION </th>
+                        <th scope="col">MACHIN NO</th>
+                        <th scope="col">MOULDING DATE</th>
+                        <th scope="col">MOULDER NAME</th>
+                        <th scope="col"> INSPECTOR NAME</th>
+                        <th scope="col"> REJECTOR  NAME</th>
+                        <th scope="col" style="text-align: center">MOULDING QTY</th>
+                        <!-- <th scope="col">USER ID</th> -->
+                        <!-- <th scope="col">NAME</th> -->
+                        <th scope="col">SHIFT</th>
+                        <th scope="col" colspan="2">Action</th>
+                        </tr>
+                </thead>
+                <tbody style="background: #ffffff;">
+                    <tr [class]="d.isChecked ? 'bg-secondary' :'' " *ngFor="let d of data | filter:searchKeyword | paginate:{ itemsPerPage: itemsPerPage, currentPage : page, totalItems :count}, let i =index">
+                        <td><input type="checkbox" [checked]="d.isChecked" [disabled]="d.isChecked" (change)="onCheckboxChange($event, d)" /></td>
+                        <td style="text-align: center">{{d.cardNo}}</td>
+
+                        <td style="background-color: rgb(145, 215, 255);text-align: center"><a [routerLink]="['../../barcode',d.cardNo]">View</a></td>
+                        <td>{{d.batchCode}}</td>
+                        <td>{{d.batchMadeBy}}</td>
+                        <td>{{d.batchWeighed}}</td>
+                        <td>{{d.custName}}</td>
+                        <td>{{d.itemName}}</td>
+                        <td>{{d.itemDesc}}</td>
+                        <td style="text-align: center">{{d.mcNo}}</td>
+                        <td style="text-align: left;">{{d.modulingDate | date}}</td>
+                        <td>{{d.moulderName}}</td>
+                        <td>{{d.inspectorName}}</td>
+                        <td>{{d.rejectorName}}</td>
+                        <td style="text-align: center">{{d.mouldingQty}}</td>
+                        <!-- <td>{{d.oid}}</td> -->
+                        <!-- <td>{{d.oname}}</td> -->
+                        <td>{{d.shift}}</td>
+                        <td class="b"><a [routerLink]="['../../Supervisor/AssingWork',d.cardNo]">Update</a></td>
+            <td><a (click)="delete(d.cardNo)" style=" align-items: center;
+                background-color: #eb5126;
+                color: rgb(14, 13, 13);
+                border: none;
+                padding: 4px;
+                margin-top: 10px;
+                margin-right: 10px;
+                margin-left: 10px;
+                font-size: 15px;
+                height: 30px;
+                width: 60px;
+                border-radius: 30%;
+                box-shadow: 0 2px 4px rgb(26, 6, 2);"> Delete</a></td>
+
+
+
+                    </tr>
+                    <!-- batchMadeBy,batchcode,batchweighed,custname,itemDesc,mcNo,mcNo,mouldername,mouldingQty,oid,oname,shift -->
+            </table>
+        </div>
+        <pagination *ngIf="data.length>0" [currentPage]="page" [pageCount]="data.length/itemsPerPage+1"
+            (pageSelected)="changePage($event)"></pagination>
+    </div>
+</div>

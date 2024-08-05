@@ -1,0 +1,204 @@
+<div class="card mx-auto p-4"style="width: 75rem; ">
+    <form [formGroup]="myReactiveForm" class="row g-6">
+        <!--  -->
+        <!--  -->
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral; background-color:whitesmoke;" name="input"
+                class="form-label ">JOB CARD NO</label>
+            <input type="text" formControlName="cardNo" class="bg-light" readonly style="width:60%;">
+        </div>
+        <!-- <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+            background-color:whitesmoke; background-color: antiquewhite;" name="input" class="form-label">PART NO</label>
+            <input type="text" class="bg-light" formControlName="partNo" readonly>
+          </div> -->
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">CUSTOMER NAME</label>
+            <input type="text"  formControlName="custName" class="bg-light" readonly style="width:60%;">
+             <!-- <select  formControlName="custname">
+          <option reeadonly disabled selected>--Select--</option>
+          <option *ngFor="let customer of customers" [value]="customer.cid">{{customer.custmerName}}</option>
+        </select> -->
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">ITEM NAME</label>
+            <input type="text"  formControlName="itemDesc"  class="bg-light" readonly style="width:60%;">
+         </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">ITEM DESCRIPTION</label>
+            <input type="text"  formControlName="itemDesc"  class="bg-light" readonly style="width:60%;">
+         </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">BATCH CODE</label>
+            <input type="text"  formControlName="batchCode"  class="bg-light" readonly style="width:60%;">
+         </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">BATCH WEIGHED BY</label>
+            <input type="text"  formControlName="batchWeighed"  class="bg-light" readonly style="width:60%;"placeholder=" ">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">BATCH MADE BY</label>
+            <input type="text"  formControlName="batchMadeBy"  class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">MOULDING DATE</label>
+            <input type="text"  formControlName="otsDate"  class="bg-light" readonly style="width:60%;">
+         </div>
+
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">MOULDER NAME</label>
+            <!-- <select  formControlName="mouldername">
+           <option reeadonly disabled selected>--Select--</option>
+          <option *ngFor="let user of users" [value]="user.oid">{{user.name}}</option>
+        </select> -->
+            <!-- <select  formControlName="mouldername"> -->
+            <!-- <option reeadonly disabled selected>--Select--</option> -->
+            <!-- <option *ngFor="let operator of operators" [value]="operator.name">{{operator.name}}</option> -->
+            <!-- <option value="name2">name2</option> -->
+            <!-- <option value="name6">name6</option> -->
+            <!-- </select> -->
+            <input type="text"  formControlName="moulderName"  class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">SHIFT </label>
+            <input type="text"  formControlName="shift"  class="bg-light" readonly style="width:60%;">
+         </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">M/C NO </label>
+            <input type="text"  formControlName="mcNo"  class="bg-light" readonly style="width:60%;">
+         </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">MOULDING QTY</label>
+            <input type="text"  formControlName="mouldingQty"  class="bg-light" readonly style="width:60%;">
+        </div>
+        <!-- <div class="next">
+            <h1>---------------------------------------------------</h1>
+            <h6>NEXT OPERATOR</h6>
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">FINISHING QTY</label>
+            <input type="text"  formControlName="finishingQty"  class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">SORT QTY </label>
+            <input type="text"  formControlName="sortQty"  class="bg-light" readonly style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label ">REMARK</label>
+            <input type="text"  formControlName="remark"  class="bg-light" readonly style="width:60%;">
+
+
+        </div> -->
+        <div class="next">
+            <h1>----------------------------------------------------------------------</h1>
+            <h6>NEXT INSPECTOR</h6>
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label" ng-focus="true" >BARCODE INPUT</label>
+            <input type="text" class="custom-cursor"  formControlName="barcode" style="width:60%;" style=" cursor: pointer;">
+
+        </div>
+
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label" >Inspected QTY</label>
+            <!-- <input type="text"  formControlName="inspecedQty"> -->
+            <button [disabled]="rejectedQty <0 " (click)="handleScan()"> {{ scannedProducts }} </button>
+
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label">SHORT PRODUCT</label>
+            <input type="text"  formControlName="inspectorRejectedQty"style="width:60%;">
+        </div>
+        <div class="col-md-6">
+            <label style="border-left: 6px solid lightcoral;
+        background-color:whitesmoke;" name="input" class="form-label"> inspected Date</label>
+            <input type="text"  formControlName="inspectedDate"style="width:60%; " class="bg-light" readonly>
+       </div>
+        <div class="col-md-6">
+            <div class="btn">
+
+                <label (click) ="onSubmit()" class="btn btn-success">Submit</label>
+            </div>
+        </div>
+    </form>
+
+    <ul *ngIf="scannedBarcode && scannedBarcode.length>0">
+        <h3>Scanned Barcodes</h3>
+        <li *ngFor="let barcode of scannedBarcode">{{barcode}}</li>
+    </ul>
+</div>
+
+
+
+<!-- ------------------------------------inspector list compo uesd------------------ -
+       <div class="col-12">
+        <div *ngIf="data" class="row" style="margin-top: 25px;">
+            <div id="divTableOldDb" class="divTable tblScroll" style="border:2px solid rgb(252, 251, 251); height:700px; overflow:auto; text-align: justify; font-family:
+                'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;font-size: smaller;">
+                <input class="FormControl" placeholder="Search" type="text" style=" animation-fill-mode: backwards; padding-bottom: 5px; margin-bottom: 10px;margin-top: 10px;">
+                 <table class='table table-bordered table-striped table-hover' id='tblOldDb'> 
+                <h2 *ngIf="data && data.length == 0" class="mt-5 text-center text-success">No Data Found...!</h2>
+                <table *ngIf="data && data.length>0" class='table table-bordered table-striped table-hover'>
+                    <thead>
+                        <tr class="style" style="font-weight: 200; background-color: rgb(19, 152, 213);">
+                            <th scope="col">#</th>
+                            <th style="background-color: rgb(248, 189, 111);">WROK SHOW</th>
+                            <th scope="col" style="background-color: antiquewhite;">BARCODE</th>
+                            <th scope="col">BATCH CODE</th>
+                            <th scope="col"> BATCH MADE</th>
+                            <th scope="col"> BATCH WEIGHED</th>
+                            <th scope="col"> CUSTNAME</th>
+                            <th scope="col">ITEM DESCRIPTION </th>
+                            <th scope="col">MACHINA NO</th>
+                            <th scope="col">MOULDING DATE</th>
+                            <th scope="col">MOULDER NAME</th>
+                            <th scope="col">MOULDING QTY</th>
+                            <th scope="col">USER ID</th>
+                             <th scope="col">NAME</th> 
+                            <th scope="col">SHIFT</th>
+    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let d of uesrs, let i =index">
+                            <td>{{i+1}}</td>
+                            <td style="background-color:  rgb(248, 189, 111);"><a routerLink="../work/{{d.oid}}">View Task</a></td>
+                             <td><a (click)="delete(d._id)"> Delete</a></td> 
+                            <td style="background-color: antiquewhite;"><a routerLink="/barcode/{{d.cardNo}}">View barcode</a></td>
+                            <td >{{d.batchCode}}</td>
+                            <td>{{d.batchMadeBy}}</td>
+                            <td>{{d.batchWeighed}}</td>
+                            <td>{{d.custName}}</td>
+                            <td>{{d.itemDesc}}</td>
+                            <td>{{d.mcNo}}</td>
+                            <td>{{d.modulingDate}}</td>
+                            <td style="background-color: rgb(219, 245, 71);">{{d.moulderName}}</td>
+                            <td>{{d.mouldingQty}}</td>
+                            <td>{{d.oid}}</td>
+                             <td>{{d.oname}}</td> 
+                            <td>{{d.shift}}</td>
+                        </tr>
+    
+                    </tbody>
+                 batchMadeBy,batchcode,batchweighed,custname,itemDesc,mcNo,mcNo,mouldername,mouldingQty,oid,oname,shift 
+                </table>
+            </div>
+        </div>
+    </div>-->
